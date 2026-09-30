@@ -3,6 +3,10 @@
 // Nothing about the story lives in this file; the GM types stone names and
 // inscriptions into the room when the players find them.
 
+// Static import: the SDK must be listening before the page finishes loading,
+// or Owlbear's "ready" message is missed.
+import RealOBR from "https://cdn.jsdelivr.net/npm/@owlbear-rodeo/sdk@3/+esm";
+
 const KEY = "com.ashfall-road/state";
 const FIRE = [
   { n: "Ashes", c: "#6d6a66" }, { n: "Embers", c: "#a4552f" }, { n: "Low", c: "#c7773a" },
@@ -19,16 +23,7 @@ const DEFAULT = {
 };
 
 // ---------- SDK (real inside Owlbear, a local stand-in for previews) ----------
-async function loadOBR() {
-  const srcs = [
-    "https://cdn.jsdelivr.net/npm/@owlbear-rodeo/sdk@3/+esm",
-    "https://esm.sh/@owlbear-rodeo/sdk@3",
-  ];
-  for (const s of srcs) {
-    try { const m = await import(s); return m.default || m.OBR || m; } catch (e) { /* try next */ }
-  }
-  return null;
-}
+async function loadOBR() { return RealOBR; }
 function mockOBR() {
   // Lets the page run outside Owlbear (a browser tab, a test) with local-only state.
   let meta = {}; const subs = [];
