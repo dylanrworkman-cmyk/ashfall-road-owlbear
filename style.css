@@ -1,0 +1,98 @@
+:root{
+  --soot:#17120f; --ash:#241c18; --ash2:#2f2520; --line:#4a3b33;
+  --parch:#efe2c4; --dim:#b9a88c; --red:#c2372b; --ember:#e08a3c; --gold:#e8c26a; --moss:#7f9a5a; --ward:#8fb4d8;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--soot);color:var(--parch);font:14px/1.45 Georgia,"Iowan Old Style","Palatino Linotype",serif;overflow-y:auto}
+button,input{font:inherit;color:inherit}
+button{background:var(--ash2);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+button:hover{border-color:var(--ember)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+[hidden]{display:none!important}
+h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0 0 6px;font-weight:normal}
+
+.top{display:flex;justify-content:space-between;align-items:center;padding:10px 14px 6px}
+.brand{font-size:17px;letter-spacing:.04em}
+.mark{color:var(--red)}
+.who{font-size:11px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+
+.tabs{display:flex;gap:4px;padding:0 10px;border-bottom:1px solid var(--line)}
+.tabs button{border:0;border-radius:6px 6px 0 0;background:transparent;color:var(--dim);padding:7px 10px}
+.tabs button[aria-selected=true]{background:var(--ash);color:var(--parch);box-shadow:inset 0 -2px 0 var(--red)}
+
+.panel{padding:12px 14px 16px;display:flex;flex-direction:column;gap:14px}
+.hint{margin:0;color:var(--dim);font-size:13px}
+
+/* oil */
+.oil{background:var(--ash);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.oil-head{display:flex;justify-content:space-between;align-items:baseline}
+.oil-count b{font-size:26px;color:var(--gold);font-variant-numeric:tabular-nums}
+.oil-count span{color:var(--dim)}
+.kegs{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin:6px 0}
+.keg{aspect-ratio:3/4;border:1.5px solid var(--line);border-radius:5px 5px 6px 6px;position:relative;background:#1c1512}
+.keg.full{background:linear-gradient(#3b2a1c,#2a1d13);border-color:var(--ember)}
+.keg.full::after{content:"";position:absolute;left:18%;right:18%;top:38%;height:2px;background:var(--ember);opacity:.7;box-shadow:0 6px 0 var(--ember)}
+.warn{margin:4px 0 0;color:#ffd7c9;background:#5a1d17;border:1px solid var(--red);border-radius:6px;padding:6px 8px;font-size:13px}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+
+/* fire */
+.fire-track{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.fire-track button{padding:8px 2px;font-size:12px;border-radius:6px;opacity:.45;color:#1a120c}
+.fire-track button.on{opacity:1;outline:2px solid var(--parch);outline-offset:1px}
+.fire-track button:disabled{cursor:default}
+
+/* card */
+.card{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.card>div{background:var(--ash);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.card dt{font-size:11px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
+.card dd{margin:0;font-size:18px;display:flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums}
+.stepper{margin-left:auto;display:inline-flex;gap:3px}
+.stepper button{padding:0 8px;line-height:22px}
+
+/* watch */
+.watch-rows{display:flex;flex-direction:column;gap:4px}
+.watch-rows label{display:grid;grid-template-columns:62px 1fr;align-items:center;gap:6px;font-size:13px;color:var(--dim)}
+.watch-rows input{background:var(--ash);border:1px dashed var(--line);border-radius:6px;padding:5px 8px;min-width:0}
+.motto{text-align:center;color:var(--dim);font-style:italic;margin:0}
+
+/* remembrance */
+.add{display:grid;grid-template-columns:1fr auto;gap:6px}
+.add input{background:var(--ash);border:1px solid var(--line);border-radius:6px;padding:6px 8px;min-width:0}
+.add #rem-note{grid-column:1/2}
+.add button{grid-row:1/3;grid-column:2;align-self:stretch;background:#3a1c16;border-color:var(--red)}
+.rem{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;counter-reset:r}
+.rem li{background:var(--ash);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:6px;padding:6px 8px;display:grid;grid-template-columns:1fr auto;gap:2px 8px;counter-increment:r}
+.rem .nm{font-size:16px}
+.rem .nm::before{content:counter(r) ". ";color:var(--dim);font-size:12px}
+.rem .nt{grid-column:1;color:var(--dim);font-size:12.5px;font-style:italic}
+.rem .by{grid-column:1;color:#8c7c64;font-size:11px}
+.rem .act{grid-row:1/4;grid-column:2;display:flex;flex-direction:column;gap:4px;align-self:center}
+.rem .act button{font-size:11.5px;padding:2px 8px}
+.rem li.forgotten{border-left-color:#5b4c42;opacity:.75}
+.rem li.forgotten .nm{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px}
+.empty{color:var(--dim);font-style:italic;margin:0}
+
+/* stones */
+.stones{display:flex;flex-direction:column;gap:8px}
+.stone{display:grid;grid-template-columns:44px 1fr;gap:10px;background:var(--ash);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.stone svg{width:44px;height:58px}
+.stone .t{font-size:15px}
+.stone .t small{color:var(--dim);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block}
+.stone .w{color:var(--dim);font-size:12.5px}
+.stone .ins{margin:4px 0 0;padding:6px 8px;border-left:2px solid var(--ward);background:#1b1a1f;font-style:italic;white-space:pre-wrap}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.tag{font-size:11px;border:1px solid var(--line);border-radius:10px;padding:1px 8px;color:var(--dim)}
+.tag.on{border-color:var(--ward);color:var(--ward)}
+.tag.carved.on{border-color:var(--gold);color:var(--gold)}
+.stone.unknown{opacity:.6}
+.stone .gmctl{grid-column:1/3;display:flex;flex-direction:column;gap:6px;border-top:1px dashed var(--line);padding-top:6px}
+.stone .gmctl .row{margin:0}
+.stone .gmctl button.on{background:#1f3140;border-color:var(--ward)}
+.stone .gmctl input,.stone .gmctl textarea{background:var(--soot);color:var(--parch);border:1px solid var(--line);border-radius:6px;padding:6px;font:inherit;font-size:13px;min-height:52px;resize:vertical}
+
+.foot{position:sticky;bottom:0;background:var(--soot);border-top:1px solid var(--line);padding:8px 14px;display:flex;align-items:center;gap:10px}
+.foot span{font-size:12px;color:var(--dim)}
+.gmnote{font-size:11px;color:var(--ember)}
+.stone .gmctl input{min-height:0;resize:none}

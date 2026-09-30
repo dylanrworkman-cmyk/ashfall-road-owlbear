@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ashfall Road</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="mark" aria-hidden="true">✦</span> Ashfall Road</div>
+  <div class="who" id="who">connecting…</div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button role="tab" data-tab="road" aria-selected="true">Road Card</button>
+  <button role="tab" data-tab="rem" aria-selected="false">Remember</button>
+  <button role="tab" data-tab="stones" aria-selected="false">Waystones</button>
+</nav>
+
+<main>
+  <!-- ROAD CARD -->
+  <section id="tab-road" class="panel">
+    <div class="oil">
+      <div class="oil-head">
+        <h2>Lantern oil</h2>
+        <div class="oil-count"><b id="oil-n">12</b> <span>kegs</span></div>
+      </div>
+      <div class="kegs" id="kegs" aria-label="Oil kegs"></div>
+      <p class="warn" id="oil-warn" hidden></p>
+      <div class="gm row" hidden>
+        <button data-act="oil" data-d="-1" title="One night's ring burned">Night burned −1</button>
+        <button data-act="oil" data-d="1">+1 keg</button>
+      </div>
+    </div>
+
+    <div class="fire">
+      <h2>The Fire</h2>
+      <div class="fire-track" id="fire"></div>
+    </div>
+
+    <dl class="card">
+      <div><dt>Day</dt><dd><span id="day">1</span><span class="gm stepper" hidden><button data-act="day" data-d="-1" aria-label="Day down">−</button><button data-act="day" data-d="1" aria-label="Day up">+</button></span></dd></div>
+      <div><dt>Larder</dt><dd><span id="larder">14</span> days<span class="gm stepper" hidden><button data-act="larder" data-d="-1" aria-label="Larder down">−</button><button data-act="larder" data-d="1" aria-label="Larder up">+</button></span></dd></div>
+      <div><dt>Spare wheels</dt><dd><span id="wheels">2</span><span class="gm stepper" hidden><button data-act="wheels" data-d="-1" aria-label="Wheels down">−</button><button data-act="wheels" data-d="1" aria-label="Wheels up">+</button></span></dd></div>
+      <div><dt>Spare axle</dt><dd><span id="axle">1</span><span class="gm stepper" hidden><button data-act="axle" data-d="-1" aria-label="Axle down">−</button><button data-act="axle" data-d="1" aria-label="Axle up">+</button></span></dd></div>
+    </dl>
+
+    <div class="watch">
+      <h2>Tonight's watch</h2>
+      <div class="watch-rows" id="watch"></div>
+    </div>
+
+    <p class="motto">“Wheels turn.”</p>
+  </section>
+
+  <!-- REMEMBRANCE LIST -->
+  <section id="tab-rem" class="panel" hidden>
+    <h2>The Remembrance List</h2>
+    <p class="hint">Write down everyone the road has taken, and one thing about each of them. Say the names at every waystone. If your character forgets someone, strike them out. Don't erase them.</p>
+    <form id="rem-form" class="add" autocomplete="off">
+      <input id="rem-name" maxlength="40" placeholder="Name" required>
+      <input id="rem-note" maxlength="80" placeholder="One thing about them">
+      <button type="submit">Add</button>
+    </form>
+    <ol class="rem" id="rem"></ol>
+    <p class="empty" id="rem-empty">No names yet. Let's keep it that way as long as we can.</p>
+  </section>
+
+  <!-- WAYSTONES -->
+  <section id="tab-stones" class="panel" hidden>
+    <h2>The waystones</h2>
+    <p class="hint">Four old stones along the road east. Carve your name on each one you pass, “so the road remembers you.”</p>
+    <div class="stones" id="stones"></div>
+  </section>
+</main>
+
+<footer class="gm foot" hidden>
+  <button id="export" type="button">Copy for the DM hub</button>
+  <span id="export-msg" role="status"></span>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

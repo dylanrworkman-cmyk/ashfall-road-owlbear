@@ -1,0 +1,18 @@
+{
+  "name": "Ashfall Road",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "description": "The caravan's Road Card and lantern oil, the Remembrance List, and the waystones for the Ashfall Road campaign.",
+  "author": "Ashfall Road table",
+  "icon": "icon.svg",
+  "action": {
+    "title": "Ashfall Road",
+    "icon": "icon.svg",
+    "popover": "index.html",
+    "width": 380,
+    "height": 600
+  },
+  "permissions": [
+    { "name": "clipboard-write", "reason": "So the GM can copy the table's notes for the DM hub." }
+  ]
+}
