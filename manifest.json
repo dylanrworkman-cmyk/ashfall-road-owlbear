@@ -4,11 +4,11 @@
   "manifest_version": 1,
   "description": "The caravan's Road Card and lantern oil, the Remembrance List, and the waystones for the Ashfall Road campaign.",
   "author": "Ashfall Road table",
-  "icon": "icon.svg",
+  "icon": "/ashfall-road-owlbear/icon.svg",
   "action": {
     "title": "Ashfall Road",
-    "icon": "icon.svg",
-    "popover": "index.html",
+    "icon": "/ashfall-road-owlbear/icon.svg",
+    "popover": "/ashfall-road-owlbear/index.html",
     "width": 380,
     "height": 600
   },
