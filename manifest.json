@@ -8,7 +8,7 @@
   "action": {
     "title": "Ashfall Road",
     "icon": "/ashfall-road-owlbear/icon.svg",
-    "popover": "/ashfall-road-owlbear/index.html",
+    "popover": "/ashfall-road-owlbear/panel.html",
     "width": 380,
     "height": 600
   },

@@ -219,19 +219,32 @@ $("#export").addEventListener("click", async () => {
 });
 
 // ---------- boot ----------
+const status = (t) => { const w = document.getElementById("who"); if (w) w.textContent = t; };
+window.addEventListener("error", (e) => status("error: " + (e.message || "script")));
+window.addEventListener("unhandledrejection", (e) => status("error: " + ((e.reason && e.reason.message) || e.reason)));
 (async () => {
+  status("loading…");
   let real = await loadOBR();
-  OBR = real && real.isAvailable ? real : mockOBR();
+  const inOwlbear = new URLSearchParams(location.search).has("obrref");
+  if (inOwlbear && !real) { status("couldn't load the Owlbear SDK"); return; }
+  OBR = real && (real.isAvailable || inOwlbear) ? real : mockOBR();
+  let started = false;
   const start = async () => {
-    role = await OBR.player.getRole();
-    try { me = (await OBR.player.getName()) || me; } catch (e) {}
-    $("#who").textContent = (OBR.isAvailable ? "" : "preview · ") + (isGM() ? "GM" : me);
-    const meta = await OBR.room.getMetadata();
-    if (!meta[KEY] && isGM()) await OBR.room.setMetadata({ [KEY]: structuredClone(DEFAULT) });
-    state = normalize(meta[KEY]);
-    renderAll();
-    OBR.room.onMetadataChange((m) => { state = normalize(m[KEY]); renderAll(); });
-    try { const t = localStorage.getItem("ar-tab"); if (t) document.querySelector(`.tabs [data-tab="${t}"]`)?.click(); } catch (e) {}
+    if (started) return; started = true;
+    try {
+      status("joining room…");
+      role = await OBR.player.getRole();
+      try { me = (await OBR.player.getName()) || me; } catch (e) {}
+      status((inOwlbear ? "" : "preview · ") + (isGM() ? "GM" : me));
+      const meta = await OBR.room.getMetadata();
+      if (!meta[KEY] && isGM()) await OBR.room.setMetadata({ [KEY]: structuredClone(DEFAULT) });
+      state = normalize(meta[KEY]);
+      renderAll();
+      OBR.room.onMetadataChange((m) => { state = normalize(m[KEY]); renderAll(); });
+      try { const t = localStorage.getItem("ar-tab"); if (t) document.querySelector(`.tabs [data-tab="${t}"]`)?.click(); } catch (e) {}
+    } catch (e) { status("error: " + (e && e.message || e)); }
   };
+  status("waiting for Owlbear…");
   if (OBR.isReady) start(); else OBR.onReady(start);
+  setTimeout(() => { if (!started) status("Owlbear didn't answer — reopen the panel"); }, 8000);
 })();
