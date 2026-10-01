@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DM note</title>
+<style>
+  :root { color-scheme: dark; --soot:#17120f; --ash:#241c18; --line:#4a3b33; --parch:#efe2c4; --dim:#b9a88c; --red:#c2372b; --gold:#e8c26a; }
+  * { box-sizing: border-box }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--soot); color: var(--parch); font: 14px/1.45 Georgia, "Palatino Linotype", serif; display: flex; flex-direction: column; padding: 12px 14px; gap: 8px; }
+  h1 { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin: 0; font-weight: normal; }
+  p.hint { margin: 0; color: var(--dim); font-size: 12px; }
+  textarea { flex: 1; min-height: 0; resize: none; background: #f3e6b4; color: #2b1d14; border: 1px solid var(--line); border-radius: 8px; padding: 10px; font: 14px/1.4 Georgia, serif; }
+  textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  button { font: inherit; color: inherit; background: #2f2520; border: 1px solid var(--line); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+  button:hover { border-color: var(--gold); }
+  button.primary { background: #3a1c16; border-color: var(--red); }
+  button.danger { margin-left: auto; color: #ffb3a8; }
+  label { display: flex; gap: 6px; align-items: center; font-size: 13px; color: var(--dim); }
+  #msg { font-size: 12px; color: var(--dim); }
+</style>
+</head>
+<body>
+  <h1>DM note</h1>
+  <p class="hint">First line is the title. Players can't see this note unless you tick the box.</p>
+  <textarea id="text" spellcheck="true" aria-label="Note text"></textarea>
+  <div class="row">
+    <label><input type="checkbox" id="show"> Show to players</label>
+  </div>
+  <div class="row">
+    <button class="primary" id="save" type="button">Save</button>
+    <button id="cancel" type="button">Close</button>
+    <button class="danger" id="del" type="button">Delete note</button>
+  </div>
+  <span id="msg" role="status"></span>
+  <script type="module" src="note-editor.js?v=1"></script>
+</body>
+</html>
